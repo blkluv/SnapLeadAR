@@ -1,0 +1,41 @@
+/* src/components/FeedbackMessages/FeedbackMessage.css */
+.feedback-message-enter {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+.feedback-message-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition:
+        opacity 300ms,
+        transform 300ms;
+}
+
+.feedback-message-exit {
+    opacity: 1;
+}
+
+.feedback-message-exit-active {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition:
+        opacity 300ms,
+        transform 300ms;
+}
+
+@media (max-width: 640px) {
+    .feedback-message {
+        width: 90%;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .feedback-message-enter-active,
+    .feedback-message-exit-active {
+        transition: none;
+    }
+}

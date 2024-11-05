@@ -1,0 +1,37 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "server/server.js",
+            "use": "@vercel/node"
+        },
+        {
+            "src": "package.json",
+            "use": "@vercel/static-build",
+            "config": {
+                "distDir": "build"
+            }
+        }
+    ],
+    "routes": [
+        {
+            "src": "/api/(.*)",
+            "dest": "server/server.js"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "build/$1"
+        }
+    ],
+    "env": {
+        "SERVER_URL": "@server_url",
+        "PORT": "@port",
+        "GOOGLE_SERVICE_ACCOUNT_EMAIL": "@google_service_account_email",
+        "GOOGLE_PRIVATE_KEY": "@google_private_key",
+        "SPREADSHEET_ID": "@spreadsheet_id",
+        "REACT_APP_LENS_GROUP_ID": "@react_app_lens_group_id",
+        "REACT_APP_API_TOKEN": "@react_app_api_token",
+        "REACT_APP_LENS_IDS": "@react_app_lens_ids",
+        "VERCEL_URL": "@vercel_url"
+    }
+}

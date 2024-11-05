@@ -1,0 +1,166 @@
+/* src/components/LeadCaptureForm/LeadCaptureForm.css */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/icon?family=Material+Symbols+Rounded");
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #000;
+    color: #fff;
+    font-family: "Inter", sans-serif;
+    padding: 1rem;
+    width: 640px;
+}
+
+.form-content {
+    width: 100%;
+    max-width: 428px;
+    background: #2a2a2a;
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.24);
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    z-index: -1000;
+    position: absolute;
+}
+
+.form-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #fffc00;
+}
+
+.form-description {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.5;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.input-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: "Material Symbols Rounded";
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.5);
+    pointer-events: none;
+}
+
+.form-input {
+    width: 100%;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    padding: 0 16px 0 48px !important;
+    margin-bottom: 0 !important;
+    font-size: 16px;
+    color: #fff;
+    transition: all 0.2s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #fffc00;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.form-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.submit-button {
+    width: 100%;
+    height: 48px;
+    background: #fffc00;
+    border: none;
+    border-radius: 12px;
+    color: #000;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.submit-button:hover {
+    background: #ffe700;
+}
+
+.submit-button:active {
+    transform: translateY(1px);
+}
+
+.submit-button .material-symbols-rounded {
+    font-size: 20px;
+    color: #000;
+}
+
+.submit-button:disabled {
+    background: rgba(255, 252, 0, 0.5);
+    cursor: not-allowed;
+}
+
+.message {
+    margin-top: 1rem;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.error-message {
+    background: rgba(255, 59, 48, 0.1);
+    color: #ff3b30;
+}
+
+.success-message {
+    background: rgba(52, 199, 89, 0.1);
+    color: #34c759;
+}
+
+@media (max-width: 480px) {
+    .form-content {
+        padding: 1.5rem;
+    }
+
+    .form-title {
+        font-size: 1.75rem;
+    }
+}
+
+.material-symbols-rounded {
+    font-family: "Material Symbols Rounded";
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: "liga";
+    -webkit-font-smoothing: antialiased;
+}

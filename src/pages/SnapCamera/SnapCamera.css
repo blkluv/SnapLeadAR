@@ -1,0 +1,439 @@
+/* src/pages/SnapCamera/SnapCamera.css */
+/* Base container styles */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #121212;
+    color: #fff;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Video container styles */
+.video-container {
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+    aspect-ratio: 9/16;
+    background-color: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transform: scale(1);
+    transition: transform 0.3s ease;
+}
+
+.video-container.hidden {
+    display: none;
+}
+
+.video-container video,
+.video-container canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.snap-watermark {
+    height: 1rem;
+    opacity: 0.72;
+    position: absolute;
+    width: 5rem;
+    z-index: 1;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 82.44 16'%3E%3Cdefs%3E%3CclipPath id='a'%3E%3Cpath fill='none' d='M66.44 0h16v16h-16z'/%3E%3C/clipPath%3E%3C/defs%3E%3Cpath fill='%23ffffff' d='M57.66 14.18l1.19-2.83-2.46-5.63h1.07l1.92 4.5 1.74-4.5h1.02l-3.47 8.46h-1.01Zm-4.6-2.07c-1.02 0-1.76-.52-2.12-1.14V12h-1V2.72h1v4.06c.36-.61 1.21-1.16 2.12-1.16 1.64 0 2.86 1.2 2.86 3.16v.1c0 1.92-1.13 3.24-2.86 3.24Zm-.1-.83c1.25 0 1.92-.84 1.92-2.36v-.1c0-1.58-.88-2.38-1.93-2.38-1.16 0-2.05.77-2.05 2.38v.1c0 1.61.84 2.36 2.06 2.36Zm-10.86.83c-1.64 0-2.83-1.16-2.83-3.12v-.1c0-1.92 1.2-3.28 2.93-3.28 1.04 0 1.69.5 2.05 1.12V2.72h1V12h-1v-1.08c-.36.61-1.24 1.19-2.15 1.19Zm.11-.83c1.16 0 2.08-.77 2.08-2.38v-.1c0-1.61-.77-2.36-1.99-2.36s-1.99.88-1.99 2.4v.1c0 1.58.85 2.34 1.91 2.34Zm-6.48.83c-1.78 0-3.04-1.25-3.04-3.18v-.1c0-1.9 1.21-3.22 2.94-3.22 1.45 0 2.82.88 2.82 3.12v.32h-4.73c.05 1.43.73 2.22 2.02 2.22.97 0 1.54-.36 1.67-1.09h1c-.22 1.26-1.26 1.92-2.68 1.92Zm-1.96-3.85h3.67c-.1-1.3-.77-1.81-1.8-1.81s-1.7.7-1.87 1.81ZM29.08 12V5.72h1v1.13c.4-.71.94-1.2 2.06-1.24v.94c-1.26.06-2.06.46-2.06 2v3.44h-1Zm-4 .11c-1.78 0-3.04-1.25-3.04-3.18v-.1c0-1.9 1.21-3.22 2.94-3.22 1.45 0 2.82.88 2.82 3.12v.32h-4.73c.05 1.43.73 2.22 2.02 2.22.97 0 1.54-.36 1.67-1.09h1c-.22 1.26-1.26 1.92-2.68 1.92Zm-1.97-3.85h3.67c-.1-1.3-.77-1.81-1.8-1.81s-1.7.7-1.87 1.81ZM14.61 12l-1.93-6.28h1.08l1.46 5.05 1.52-5.05h.86l1.43 5.05 1.48-5.05h1.02L19.57 12h-1.1l-1.31-4.7L15.7 12h-1.09Zm-5.53.11c-1.79 0-3.07-1.36-3.07-3.19v-.1c0-1.88 1.31-3.2 3.08-3.2s3.08 1.31 3.08 3.19v.1c0 1.9-1.31 3.2-3.1 3.2Zm.01-.83c1.26 0 2.05-.95 2.05-2.36v-.08c0-1.45-.8-2.39-2.05-2.39s-2.05.94-2.05 2.38v.1c0 1.43.78 2.36 2.05 2.36ZM0 12V3.42h2.44c1.64 0 3 .72 3 2.51v.05c0 1.82-1.37 2.53-3 2.53H1.05V12H0Zm1.04-4.32H2.5c1.22 0 1.88-.6 1.88-1.7v-.05c0-1.21-.72-1.67-1.88-1.67H1.04v3.42Z'/%3E%3Cg clip-path='url(%23a)'%3E%3Cpath fill='%23ffffff' d='M82.38 11.52c-.11-.3-.32-.46-.56-.6-.05-.03-.09-.05-.12-.06-.07-.04-.15-.07-.22-.11-.75-.4-1.34-.9-1.75-1.5-.14-.2-.23-.38-.3-.53-.03-.1-.03-.16 0-.21.02-.04.07-.08.1-.1.13-.09.26-.17.35-.23.16-.1.29-.19.37-.24.31-.22.53-.45.66-.7.19-.36.21-.77.07-1.16-.2-.54-.71-.87-1.33-.87-.13 0-.26.01-.39.04-.03 0-.07.02-.1.02 0-.37 0-.76-.04-1.14-.12-1.34-.59-2.05-1.08-2.61-.2-.23-.56-.58-1.1-.88C76.19.21 75.35 0 74.43 0s-1.76.22-2.51.64c-.54.31-.89.65-1.1.88-.49.56-.96 1.27-1.08 2.61-.03.38-.04.77-.04 1.14-.03 0-.07-.02-.1-.02-.13-.03-.26-.04-.39-.04-.62 0-1.12.33-1.33.87-.15.39-.12.8.07 1.16.13.26.35.49.66.7.08.06.21.14.37.24.09.06.21.14.34.22.02.01.09.06.11.11.03.05.03.11-.01.22-.07.15-.16.32-.3.52-.4.58-.97 1.08-1.7 1.47-.39.2-.79.34-.95.8-.13.35-.04.74.28 1.07.11.11.24.22.41.31.4.22.73.33 1 .4.05.01.15.05.2.09.12.1.1.26.26.49.1.14.2.24.3.3.33.23.7.24 1.1.26.35.01.76.03 1.22.18.19.06.39.18.62.32.55.34 1.3.8 2.57.8s2.02-.47 2.57-.8c.23-.14.43-.26.61-.32.46-.15.86-.17 1.22-.18.39-.02.76-.03 1.1-.26.1-.07.23-.19.34-.37.11-.19.11-.33.22-.42.04-.04.14-.07.19-.09.27-.07.61-.18 1.01-.4.18-.1.32-.21.43-.33.3-.33.38-.71.25-1.05Zm-1.12.6c-.68.38-1.14.34-1.49.56-.3.19-.12.61-.34.76-.27.19-1.06-.01-2.08.32-.84.28-1.38 1.08-2.9 1.08s-2.05-.8-2.9-1.08c-1.02-.34-1.82-.14-2.08-.32-.22-.15-.04-.57-.34-.76-.35-.23-.81-.19-1.49-.56-.44-.24-.19-.39-.04-.46 2.48-1.2 2.87-3.05 2.89-3.19.02-.17.05-.3-.14-.47-.18-.16-.96-.65-1.18-.8-.36-.25-.52-.5-.4-.81.08-.21.28-.29.49-.29.07 0 .13 0 .2.02.4.09.78.28 1 .34.03 0 .06.01.08.01.12 0 .16-.06.15-.2-.03-.43-.09-1.28-.02-2.07.09-1.08.44-1.62.86-2.1.2-.23 1.14-1.22 2.93-1.22s2.73.99 2.93 1.22c.42.47.77 1.01.86 2.1.07.79 0 1.63-.02 2.07 0 .14.03.2.15.2.02 0 .05 0 .08-.01.22-.05.61-.25 1-.34.06-.01.13-.02.2-.02.21 0 .41.08.49.29.12.31-.04.56-.4.81-.22.15-1 .64-1.18.8-.18.17-.16.3-.14.47.02.14.41 1.99 2.89 3.19.14.07.39.22-.05.46Z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Camera controls */
+.camera-controls {
+    position: absolute;
+    bottom: 32px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    z-index: 10;
+    padding: 0 16px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: none;
+}
+
+/* Base button styles */
+.camera-button {
+    background-color: #fece22;
+}
+.download-button,
+.share-button {
+    background-color: #35c450;
+}
+.record-button {
+    background-color: #ff6e4f;
+}
+
+.camera-button,
+.download-button,
+.share-button,
+.record-button {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease;
+    /* background-color: rgba(0, 0, 0, 0.6); */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    touch-action: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.record-button.recording {
+    animation: pulse 2s infinite;
+}
+
+/* Record button animation */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 45, 85, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 45, 85, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 45, 85, 0);
+    }
+}
+
+/* Active states for all buttons */
+.record-button:active:not(:disabled),
+.camera-button:active:not(:disabled),
+.download-button:active:not(:disabled),
+.share-button:active:not(:disabled) {
+    transform: scale(1.07);
+}
+
+.record-button:active:not(:disabled) {
+    opacity: 0.9;
+}
+
+.camera-button:active:not(:disabled) {
+    opacity: 0.9;
+}
+
+/* Disabled button states */
+.camera-button:disabled,
+.download-button:disabled,
+.share-button:disabled,
+.record-button:disabled {
+    /* opacity: 0.5; */
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Icon styles */
+.material-symbols-rounded {
+    font-size: 24px;
+    color: #fff;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* Timer styles */
+.timer-container {
+    position: absolute;
+    top: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.timer {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.42);
+    color: #fff;
+    border-radius: 50%;
+    font-size: 17px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Timer animation */
+@keyframes countdown {
+    0% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+}
+
+.timer.animate {
+    animation: countdown 1s ease infinite;
+}
+
+/* Processing overlay styles */
+.processing-overlay,
+.processing-spinner {
+    display: none;
+}
+/* .processing-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.processing-spinner {
+    width: 48px;
+    height: 48px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid #fff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 16px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.processing-overlay p {
+    color: white;
+    font-size: 16px;
+    margin: 0;
+    font-weight: 500;
+} */
+
+/* Error message styles */
+.error-message {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    width: 90%;
+    max-width: 400px;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translate(-50%, -100%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, 0);
+        opacity: 1;
+    }
+}
+
+.error-content {
+    background: rgba(255, 59, 48, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 12px 16px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.error-icon {
+    font-size: 24px;
+}
+
+.error-content p {
+    margin: 0;
+    flex-grow: 1;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.error-close {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+
+.error-close:hover {
+    opacity: 1;
+}
+
+/* Footer styles (hidden) */
+.footer {
+    display: none;
+}
+
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+    .video-container {
+        max-width: 100%;
+        border-radius: 0;
+    }
+
+    .camera-controls {
+        bottom: 24px;
+        gap: 20px;
+    }
+
+    .timer {
+        width: 56px;
+        height: 56px;
+        font-size: 20px;
+    }
+
+    .error-message {
+        width: calc(100% - 32px);
+        max-width: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .camera-controls {
+        bottom: 16px;
+        gap: 16px;
+    }
+
+    .timer {
+        width: 48px;
+        height: 48px;
+        font-size: 18px;
+    }
+
+    .error-content {
+        padding: 10px 14px;
+    }
+}
+
+/* iOS specific styles */
+@supports (-webkit-touch-callout: none) {
+    .container {
+        height: -webkit-fill-available;
+    }
+
+    .camera-controls {
+        bottom: max(env(safe-area-inset-bottom, 32px), 16px);
+        padding-bottom: env(safe-area-inset-bottom, 0);
+    }
+
+    .timer-container {
+        top: max(env(safe-area-inset-top, 32px), 16px);
+    }
+
+    .error-message {
+        top: max(env(safe-area-inset-top, 20px), 20px);
+    }
+}
+
+/* Aspect ratio fallback */
+@supports not (aspect-ratio: 9/16) {
+    .video-container {
+        height: calc((100vw * 16) / 9);
+        max-height: calc(100vh - 120px);
+    }
+}
+
+/* Better touch targets for mobile */
+@media (pointer: coarse) {
+    .camera-button,
+    .download-button,
+    .share-button,
+    .record-button {
+        min-width: 56px;
+        min-height: 56px;
+    }
+
+    .error-close {
+        min-width: 44px;
+        min-height: 44px;
+    }
+}
+
+/* Performance optimization */
+@media (prefers-reduced-motion: reduce) {
+    .record-button,
+    .camera-button,
+    .download-button,
+    .share-button,
+    .timer,
+    .video-container,
+    /* .processing-spinner */
+    .error-message {
+        transition: none !important;
+        animation: none !important;
+    }
+
+    /* .processing-spinner {
+        opacity: 0.8;
+    } */
+}
+
+/* Print styles in debug */
+@media print {
+    .container {
+        background: none;
+    }
+
+    .camera-controls,
+    .timer-container,
+    /* .processing-overlay */
+    .error-message {
+        display: none;
+    }
+}
