@@ -56,8 +56,8 @@
     "dependencies": {
         "@ffmpeg/ffmpeg": "^0.12.10",
         "@ffmpeg/util": "^0.12.1",
-        "@snap/camera-kit": "^0.23.0",
-        "axios": "^1.7.7",
+        "@snap/camera-kit": "^1.0.1",
+        "axios": "^1.7.8",
         "body-parser": "^1.20.3",
         "cors": "^2.8.5",
         "dotenv": "^16.4.5",
@@ -65,7 +65,7 @@
         "googleapis": "^144.0.0",
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
-        "react-i18next": "^15.1.0"
+        "react-i18next": "^15.1.2"
     },
     "devDependencies": {
         "@babel/core": "^7.26.0",
@@ -78,17 +78,17 @@
         "@babel/preset-react": "^7.25.9",
         "babel-loader": "^9.2.1",
         "compression-webpack-plugin": "^11.1.0",
-        "concurrently": "^9.0.1",
+        "concurrently": "^9.1.0",
         "css-loader": "^7.1.2",
         "css-minimizer-webpack-plugin": "^7.0.0",
         "dotenv-webpack": "^8.1.0",
         "html-webpack-plugin": "^5.6.3",
-        "mini-css-extract-plugin": "^2.9.1",
+        "mini-css-extract-plugin": "^2.9.2",
         "postcss-loader": "^8.1.1",
         "react-scripts": "5.0.1",
         "style-loader": "^4.0.0",
         "terser-webpack-plugin": "^5.3.10",
-        "webpack": "^5.95.0",
+        "webpack": "^5.96.1",
         "webpack-bundle-analyzer": "^4.10.2",
         "webpack-cli": "^5.1.4",
         "webpack-dev-server": "^5.1.0"
