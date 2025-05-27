@@ -1,112 +1,46 @@
 {
-    "name": "snaplead-ar",
-    "version": "4.0.0",
-    "description": "SnapLead AR uses Snapchat filters and AR to capture leads, logging them directly in Google Sheets. Through Snap Camera Kit and unique Lens URLs, users can record, download, and share high-resolution videos, making lead capture interactive.",
-    "author": {
-        "name": "David C Cavalcante",
-        "email": "davcavalcante@proton.me",
-        "organization": "Takk Innovate Studio",
-        "url": "https://takk.ag"
-    },
-    "license": "Apache-2.0",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/Takk8IS/SnapLeadAR.git"
-    },
-    "bugs": {
-        "url": "https://github.com/Takk8IS/SnapLeadAR/issues"
-    },
-    "keywords": [
-        "SnapLeadAR",
-        "camera-kit-web-sdk",
-        "camera-kit",
-        "snap",
-        "snapchat",
-        "filters",
-        "lenses",
-        "lead",
-        "davcavalcante",
-        "david-c-cavalcante",
-        "fjallstoppur",
-        "takk-innovate-studio",
-        "takk8is"
-    ],
-    "funding": {
-        "type": "github",
-        "url": "https://github.com/sponsors/Takk8IS"
-    },
-    "contributors": [
-        {
-            "name": "Takk Innovate Studio",
-            "email": "say@takk.ag"
-        },
-        {
-            "name": "Fjallstoppur",
-            "email": "fjallstoppur@proton.me"
-        }
-    ],
-    "homepage": ".",
-    "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject",
-        "vercel-build": "npm run build"
-    },
-    "dependencies": {
-        "@ffmpeg/ffmpeg": "^0.12.10",
-        "@ffmpeg/util": "^0.12.1",
-        "@snap/camera-kit": "^1.0.1",
-        "axios": "^1.7.8",
-        "body-parser": "^1.20.3",
-        "cors": "^2.8.5",
-        "dotenv": "^16.4.5",
-        "express": "^4.21.1",
-        "googleapis": "^144.0.0",
-        "react": "^18.3.1",
-        "react-dom": "^18.3.1",
-        "react-i18next": "^15.1.2"
-    },
-    "devDependencies": {
-        "@babel/core": "^7.26.0",
-        "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-        "@babel/plugin-syntax-dynamic-import": "^7.8.3",
-        "@babel/plugin-transform-optional-chaining": "^7.25.9",
-        "@babel/plugin-transform-private-property-in-object": "^7.25.9",
-        "@babel/plugin-transform-runtime": "^7.25.9",
-        "@babel/preset-env": "^7.26.0",
-        "@babel/preset-react": "^7.25.9",
-        "babel-loader": "^9.2.1",
-        "compression-webpack-plugin": "^11.1.0",
-        "concurrently": "^9.1.0",
-        "css-loader": "^7.1.2",
-        "css-minimizer-webpack-plugin": "^7.0.0",
-        "dotenv-webpack": "^8.1.0",
-        "html-webpack-plugin": "^5.6.3",
-        "mini-css-extract-plugin": "^2.9.2",
-        "postcss-loader": "^8.1.1",
-        "react-scripts": "5.0.1",
-        "style-loader": "^4.0.0",
-        "terser-webpack-plugin": "^5.3.10",
-        "typescript": "4.9.5",  // Explicitly pinned to resolve conflict
-        "webpack": "^5.96.1",
-        "webpack-bundle-analyzer": "^4.10.2",
-        "webpack-cli": "^5.1.4",
-        "webpack-dev-server": "^5.1.0"
-    },
-    "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
-    },
-    "resolutions": {
-        "typescript": "4.9.5"  // Optional: For yarn users to enforce version
-    }
+  "name": "snaplead-ar",
+  "version": "4.0.0",
+  "description": "SnapLead AR uses Snapchat filters and AR to capture leads...",
+  "author": {
+    "name": "David C Cavalcante",
+    "email": "davcavalcante@proton.me",
+    "organization": "Takk Innovate Studio",
+    "url": "https://takk.ag"
+  },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Takk8IS/SnapLeadAR.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Takk8IS/SnapLeadAR/issues"
+  },
+  "keywords": [
+    "SnapLeadAR",
+    "camera-kit-web-sdk",
+    "snapchat",
+    "filters"
+  ],
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "vercel-build": "npm run build"
+  },
+  "dependencies": {
+    "@ffmpeg/ffmpeg": "^0.12.10",
+    "@snap/camera-kit": "^1.0.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "react-scripts": "5.0.1",
+    "typescript": "4.9.5"
+  },
+  "browserslist": {
+    "production": [">0.2%", "not dead", "not op_mini all"],
+    "development": ["last 1 chrome version", "last 1 firefox version"]
+  }
 }
